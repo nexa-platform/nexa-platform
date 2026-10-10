@@ -102,4 +102,19 @@ const App = (): ReactElement => {
   )
 }
 
+function speakNexa(text: string) {
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+
+    const voiceMessage = new SpeechSynthesisUtterance(text);
+    voiceMessage.lang = "en-NG";
+    voiceMessage.rate = 0.9;
+    voiceMessage.pitch = 1.1;
+
+    window.speechSynthesis.speak(voiceMessage);
+  } else {
+    alert("Voice is not supported in this browser.");
+  }
+}
+
 export default App
